@@ -324,6 +324,7 @@
             lCtx.shadowColor = "#FF1493"; lCtx.shadowBlur = 40; 
             lCtx.fillText("Giáng Sinh An Lành 🎄", 512, 130);
             const loveTex = new THREE.CanvasTexture(loveCanvas);
+            loveTex.needsUpdate = true;
             const loveMat = new THREE.MeshBasicMaterial({ map: loveTex, transparent: true, blending: THREE.AdditiveBlending });
             loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), loveMat);
             loveMesh.position.set(0, 0, 20);
