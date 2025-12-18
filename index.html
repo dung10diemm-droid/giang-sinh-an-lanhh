@@ -316,20 +316,33 @@
             scene.add(starMesh);
 
             // I LOVE YOU TEXT Vandiep
-            const loveCanvas = document.createElement('canvas');
-            loveCanvas.width = 1024; loveCanvas.height = 256;
-            const lCtx = loveCanvas.getContext('2d');
-            lCtx.font = 'bold 120px "Segoe UI", sans-serif';
-            lCtx.fillStyle = '#FF69B4'; lCtx.textAlign = 'center';
-            lCtx.shadowColor = "#FF1493"; lCtx.shadowBlur = 40; 
-            lCtx.fillText("Giang Sinh An Lanh", 512, 130);
-            const loveTex = new THREE.CanvasTexture(loveCanvas);
-            loveTex.needsUpdate = true;
-            const loveMat = new THREE.MeshBasicMaterial({ map: loveTex, transparent: true, blending: THREE.AdditiveBlending });
-            loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(70, 18), loveMat);
-            loveMesh.position.set(0, 0, 20);
-            loveMesh.visible = false;
-            scene.add(loveMesh);
+// GIÁNG SINH AN LÀNH TEXT
+const loveCanvas = document.createElement('canvas');
+loveCanvas.width = 1600;   // tăng width để chữ không bị dính
+loveCanvas.height = 400;   // tăng height để chữ vừa canvas
+
+const lCtx = loveCanvas.getContext('2d');
+lCtx.font = 'bold 150px "Segoe UI", Arial, sans-serif'; // font lớn và hỗ trợ tiếng Việt
+lCtx.fillStyle = '#FF69B4';
+lCtx.textAlign = 'center';
+lCtx.textBaseline = 'middle';  // canh giữa canvas
+lCtx.shadowColor = "#FF1493";
+lCtx.shadowBlur = 50;
+lCtx.fillText("Giáng Sinh An Lành", loveCanvas.width/2, loveCanvas.height/2);
+
+const loveTex = new THREE.CanvasTexture(loveCanvas);
+loveTex.needsUpdate = true;
+
+const loveMat = new THREE.MeshBasicMaterial({
+    map: loveTex,
+    transparent: true,
+    blending: THREE.AdditiveBlending
+});
+
+loveMesh = new THREE.Mesh(new THREE.PlaneGeometry(80, 20), loveMat); // PlaneGeometry phù hợp canvas
+loveMesh.position.set(0, 0, 20);
+loveMesh.visible = true; // luôn hiển thị chữ
+scene.add(loveMesh);
         }
 
         function updateParticleGroup(group, type, targetState, speed, handRotY, time) {
